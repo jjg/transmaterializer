@@ -16,7 +16,7 @@ module ODD(t=0){
 }
 
 module HDD(t=0){
-    cube([100+t,68+t,10+t]);
+    cube([100+t,70+t,10+t]);
 }
 
 module SBC(t=0){
@@ -30,17 +30,25 @@ difference(){
         union(){
             
             // base
-            cube([200,200,5]);
+            cube([150,230,5]);
+            
+            // Back left wall
+            cube([5,230,30]);
+            
+            // Back right wall
+            translate([145,0,0]){
+                cube([5,230,30]);
+            }
             
             // ODD & HDD pockets
-            //(ODD dim + wall + wall + tolerance)
-            cube([128+5+5+2,125,25+13+5+5]);
+            //(ODD dim + wall + wall + tolerance) + 10 in X for SBC
+            cube([128+5+5+2+10,125,25+13+5+5]);
         }
         
         // cut-out space for ODD, HDD, SBC
         translate([5,0,5]){
             translate([0,0,25]){
-                ODD(1);
+                ODD(0);
             }
 
             translate([0,200-72,3]){
@@ -79,10 +87,11 @@ difference(){
         #cube([200,47,100]);
     }
     */
+    /*
     translate([0,130,0]){
         #cube([200,200,100]);
     }
-    
+    */
 }
 
 // assemble!
